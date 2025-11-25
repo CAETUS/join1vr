@@ -1,88 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1st Velian Raiders</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>1st Velian Raiders</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #1a1a1a url('/mnt/data/bf5f2adb-7a62-4a52-88b4-9af5c8ace668.png') no-repeat center;
+    background-size: contain;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Courier New", monospace;
+    color: #d9d2b6;
+    overflow: hidden;
+    animation: flicker 6s infinite;
+  }
+
+  /* Flickering bunker light effect */
+  @keyframes flicker {
+    0% { filter: brightness(0.9); }
+    5% { filter: brightness(1.1); }
+    10% { filter: brightness(0.8); }
+    15% { filter: brightness(1.0); }
+    22% { filter: brightness(0.7); }
+    30% { filter: brightness(1.15); }
+    40% { filter: brightness(0.85); }
+    60% { filter: brightness(1.05); }
+    70% { filter: brightness(0.9); }
+    85% { filter: brightness(1.12); }
+    100% { filter: brightness(0.95); }
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .join-button {
+    background: rgba(50, 40, 20, 0.85);
+    border: 2px solid #b8a36a;
+    padding: 15px 30px;
+    font-size: 24px;
+    text-decoration: none;
+    color: #d9d2b6;
+    letter-spacing: 2px;
+    transition: 0.2s;
+  }
+
+  .join-button:hover {
+    background: rgba(80, 60, 30, 0.9);
+    border-color: #e6d8a0;
+    transform: scale(1.05);
+  }
+</style>
 </head>
 <body>
 
-    <div class="wall flicker">
-
-        <img src="/mnt/data/224fee0f-b73d-4019-a9e2-dc833d3fcb0c.png" 
-             alt="Velian Raiders Poster"
-             class="poster">
-
-        <a class="cta-button" href="https://discord.gg/yourlink" target="_blank">
-            JOIN THE FIGHT
-        </a>
-
-    </div>
+  <div class="overlay">
+    <a class="join-button" href="https://discord.gg/mexb69JMWa" target="_blank">JOIN THE FIGHT</a>
+  </div>
 
 </body>
 </html>
-/* FULLSCREEN WALL BACKGROUND */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: #000;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-}
-
-/* WALL */
-.wall {
-    height: 100%;
-    width: 100%;
-    background: radial-gradient(circle at top, #3a2d18, #1a150c, #0a0805);
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 40px;
-}
-
-/* POSTER */
-.poster {
-    width: 420px;
-    max-width: 90%;
-    box-shadow: 0px 20px 60px rgba(0,0,0,0.7);
-    border-radius: 4px;
-}
-
-/* BUTTON */
-.cta-button {
-    margin-top: 30px;
-    padding: 12px 40px;
-    background: #8a6a32;
-    border: 3px solid #e2c37d;
-    color: #fff;
-    text-decoration: none;
-    font-size: 22px;
-    letter-spacing: 2px;
-    font-weight: bold;
-    box-shadow: 0px 0px 12px rgba(0,0,0,0.4);
-    transition: 0.2s;
-}
-
-.cta-button:hover {
-    background: #b48a46;
-    transform: scale(1.05);
-}
-
-/* FLICKERING BUNKER LIGHT */
-.flicker {
-    animation: flickerAnimation 8s infinite;
-    animation-timing-function: steps(2, end);
-}
-
-@keyframes flickerAnimation {
-    0%, 5%   { filter: brightness(0.9); }
-    6%, 7%   { filter: brightness(0.4); }
-    8%, 12%  { filter: brightness(1); }
-    13%, 15% { filter: brightness(0.7); }
-    16%, 100% { filter: brightness(1); }
-}
