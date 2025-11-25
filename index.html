@@ -1,165 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>1st Velian Raiders — Join the Fight</title>
+<meta charset="UTF-8">
+<title>JOIN THE FIGHT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  /* reset */
-  html,body {height:100%; margin:0; font-family: "Arial", "Helvetica", sans-serif; background:#000;}
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        font-family: Impact, sans-serif;
+    }
 
-  /* page container */
-  .page {
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
-    background-color:#040200; /* fallback */
-  }
+    /* === POSTER FULLSCREEN BACKGROUND === */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
 
-  /* Poster background (the image you uploaded as Poster.png at repo root) */
-  .poster {
-    position:relative;
-    width:100%;
-    height:100vh;
-    display:flex;
-    align-items:flex-end;           /* button area sits near bottom of poster */
-    justify-content:center;
-    /* Use your Poster.png in repo root. This keeps the whole poster visible */
-    background-image: url('Poster.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;      /* ensure the entire poster fits without cropping */
-    /* a subtle dark overlay so text/button are readable */
-    box-shadow: inset 0 160px 140px rgba(0,0,0,0.55), inset 0 -120px 140px rgba(0,0,0,0.55);
-  }
+        background-image: url("Poster.png");
+        background-size: contain; /* FULL poster visible */
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: #1a1a1a; /* dark border around poster */
 
-  /* keep poster centered on narrow screens and limit max width so poster looks natural */
-  .poster-inner {
-    width: min(780px, 85vw);   /* poster image width on most screens */
-    height: min(1100px, 95vh);
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    position:relative;
-    pointer-events:none; /* let click-through; button will be clickable */
-  }
+        z-index: -2;
+    }
 
-  /* join button */
-  .cta {
-    pointer-events:auto;
-    margin: 32px 0;
-    padding: 12px 34px;
-    border-radius:6px;
-    border:3px solid rgba(230,190,120,0.95);
-    background: rgba(30,28,25,0.85);
-    color:#e8d6a4;
-    font-weight:700;
-    letter-spacing:1.5px;
-    text-decoration:none;
-    box-shadow: 0 6px 0 rgba(0,0,0,0.45);
-    transform: translateY(0);
-    transition: transform .12s ease, box-shadow .12s ease;
-    pointer-events:auto;
-  }
-  .cta:hover { transform: translateY(-3px); box-shadow: 0 10px 0 rgba(0,0,0,0.55); }
+    /* === FLOATING DUST PARTICLES === */
+    body::after {
+        content: "";
+        position: fixed;
+        top: -200px;
+        left: 0;
+        width: 100%;
+        height: 200%;
+        pointer-events: none;
 
-  /* subtle vignette */
-  .vignette {
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0.0) 35%, rgba(0,0,0,0.55) 100%);
-    mix-blend-mode:multiply;
-  }
+        background-image: radial-gradient(rgba(255,255,255,0.07) 2px, transparent 3px);
+        background-size: 3px 3px;
 
-  /* slow bunker light flicker effect (low frequency) */
-  .flicker {
-    position:absolute; inset:0; pointer-events:none;
-    background: radial-gradient( circle at 50% 10%, rgba(255,180,70,0.06) 0%, rgba(255,170,30,0.03) 6%, transparent 12% );
-    animation: bunker-flicker 6s infinite;
-    mix-blend-mode: overlay;
-  }
-  @keyframes bunker-flicker {
-    0%   { opacity:0.95; filter:brightness(1.05) contrast(1); }
-    20%  { opacity:0.65; filter:brightness(.92) contrast(.97); }
-    40%  { opacity:0.9; filter:brightness(1.02) contrast(1.02); }
-    60%  { opacity:0.7; filter:brightness(.95) contrast(.98); }
-    80%  { opacity:0.98; filter:brightness(1.06) contrast(1.03); }
-    100% { opacity:0.95; filter:brightness(1.05) contrast(1); }
-  }
+        animation: drift 35s linear infinite;
 
-  /* drifting dust using several faint layers */
-  .dust { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
-  .dust i {
-    position:absolute;
-    width:8px; height:8px; border-radius:50%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05));
-    opacity:0.06;
-    filter: blur(0.6px);
-    animation: drift linear infinite;
-  }
-  .dust i:nth-child(1){ left:10%; top:-5%; animation-duration:20s; animation-delay:0s; transform:scale(.9); }
-  .dust i:nth-child(2){ left:25%; top:-10%; animation-duration:28s; animation-delay:1s; transform:scale(.6); }
-  .dust i:nth-child(3){ left:40%; top:-6%; animation-duration:22s; animation-delay:4s; transform:scale(.7);}
-  .dust i:nth-child(4){ left:60%; top:-8%; animation-duration:26s; animation-delay:3s; transform:scale(.95);}
-  .dust i:nth-child(5){ left:80%; top:-12%; animation-duration:30s; animation-delay:2s; transform:scale(.5);}
+        z-index: -1;
+        opacity: 0.25;
+    }
 
-  @keyframes drift {
-    0%   { transform: translateY(0) translateX(0) scale(1); opacity:.08; }
-    50%  { opacity:.02; }
-    100% { transform: translateY(110vh) translateX(18vw) scale(1.2); opacity:0; }
-  }
+    @keyframes drift {
+        from { transform: translateY(0); }
+        to { transform: translateY(-400px); }
+    }
 
-  /* Make the layout behave on very wide screens (poster stays centered) */
-  @media (min-width:1200px){
-    .poster-inner{ width:900px; height:1200px; }
-  }
+    /* === BUTTON === */
+    .button-wrapper {
+        position: absolute;
+        bottom: 60px;
+        width: 100%;
+        text-align: center;
+    }
 
-  /* small screens: scale poster so it still fits */
-  @media (max-width:520px){
-    .poster-inner { width:92vw; height:88vh; }
-    .cta { padding:10px 22px; font-size:14px; }
-  }
+    .btn {
+        display: inline-block;
+        padding: 18px 40px;
+        font-size: 22px;
+        color: #fce7b0;
+        background: rgba(40, 25, 5, 0.85);
+        border: 3px solid #c9a45c;
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        background: rgba(80, 55, 20, 0.9);
+        transform: scale(1.05);
+    }
 </style>
 </head>
 
 <body>
-  <div class="page">
-    <div class="poster" role="img" aria-label="1st Velian Raiders poster">
-      <div class="poster-inner">
-        <!-- empty inner; the image itself is the poster background, button below -->
-      </div>
 
-      <!-- button area (placed visually over poster bottom) -->
-      <div style="position:absolute; bottom:6vh; width:100%; display:flex; justify-content:center; pointer-events:none;">
-        <a class="cta" href="https://discord.gg/CT22psfhqU" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">
-          JOIN THE FIGHT
-        </a>
-      </div>
+<div class="button-wrapper">
+    <a class="btn" href="https://discord.gg/CT22psfhqU">JOIN THE FIGHT</a>
+</div>
 
-      <!-- effects -->
-      <div class="vignette"></div>
-      <div class="flicker"></div>
-
-      <!-- dust: 5 drifting dots -->
-      <div class="dust" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i>
-      </div>
-    </div>
-  </div>
-
-<script>
-  // tiny accessibility improvement: let Enter trigger link when button focused
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Enter'){
-      const btn = document.querySelector('.cta');
-      if(document.activeElement === btn) btn.click();
-    }
-  });
-</script>
 </body>
 </html>
