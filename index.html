@@ -2,95 +2,102 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>JOIN 1VR</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join the Fight</title>
 
 <style>
-/* ---- Reset ---- */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Impact', sans-serif;
-}
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
 
-/* ---- Background Poster ---- */
-.background {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: url("Poster.png") center center / cover no-repeat;
-    filter: brightness(0.75);
-    animation: flicker 8s infinite;
-}
+        /* REAL BACKGROUND */
+        background-image: url('Poster.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
 
-/* ---- Flickering bunker light ---- */
-@keyframes flicker {
-    0%, 100% { filter: brightness(0.75); }
-    45% { filter: brightness(0.70); }
-    47% { filter: brightness(0.95); }
-    50% { filter: brightness(0.55); }
-    53% { filter: brightness(0.90); }
-    60% { filter: brightness(0.75); }
-}
+        /* DARK FILTER */
+        position: relative;
+        background-color: #0f0f0c;
+    }
 
-/* ---- Dust Particles ---- */
-.dust {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    background-image: url("https://i.imgur.com/SHmM1hE.png");
-    background-repeat: repeat;
-    opacity: 0.12;
-    animation: dustFloat 40s linear infinite;
-}
+    /* BUNKER LIGHT FLICKER */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 244, 200, 0.05);
+        pointer-events: none;
+        animation: flicker 7s infinite;
+    }
 
-@keyframes dustFloat {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-300px, -600px); }
-}
+    @keyframes flicker {
+        0%, 100% { opacity: 0.03; }
+        10% { opacity: 0.15; }
+        13% { opacity: 0.02; }
+        30% { opacity: 0.12; }
+        45% { opacity: 0.04; }
+        60% { opacity: 0.14; }
+        70% { opacity: 0.03; }
+        85% { opacity: 0.1; }
+    }
 
-/* ---- Button ---- */
-.container {
-    position: fixed;
-    bottom: 80px;
-    width: 100%;
-    text-align: center;
-}
+    /* DUST PARTICLES */
+    .dust {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: rgba(255,255,255,0.25);
+        border-radius: 50%;
+        animation: drift 12s linear infinite;
+        opacity: 0.4;
+        filter: blur(1px);
+    }
 
-.button {
-    background: rgba(40, 35, 30, 0.85);
-    border: 3px solid #c2a873;
-    padding: 14px 40px;
-    font-size: 20px;
-    color: #f4e7c6;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: 0.2s;
-}
+    @keyframes drift {
+        from { transform: translateY(100vh) translateX(0); }
+        to { transform: translateY(-10vh) translateX(20vw); }
+    }
 
-.button:hover {
-    background: rgba(85, 70, 55, 0.85);
-    transform: scale(1.08);
-}
+    /* BUTTON */
+    .join-btn {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(30, 30, 30, 0.85);
+        border: 2px solid #c7a86d;
+        padding: 16px 40px;
+        font-size: 18px;
+        font-family: Impact, sans-serif;
+        color: #f8e7c0;
+        cursor: pointer;
+        letter-spacing: 2px;
+        transition: 0.2s;
+        text-decoration: none;
+    }
+
+    .join-btn:hover {
+        background: rgba(50, 50, 50, 0.9);
+        transform: translateX(-50%) scale(1.05);
+    }
 </style>
 </head>
 
 <body>
 
-<div class="background"></div>
-<div class="dust"></div>
-
-<div class="container">
-    <a href="https://discord.gg/CT22psfhqU">
-        <div class="button">JOIN THE FIGHT</div>
-    </a>
-</div>
-
-</body>
-</html>
-
-
+<!-- DUST PARTICLES -->
+<script>
+    for (let i = 0; i < 80; i++) {
+        let d = document.createElement("div");
+        d.className = "dust";
+        d.style.left = Math.random() * 100 + "vw";
+        d.style.animationDelay = (Math.random() * 12) + "s";
+        d.style.opacity = 0.1 + Math.random() * 0.4;
+        document.body.append
