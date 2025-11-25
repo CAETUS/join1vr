@@ -1,117 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>1st Velian Raiders</title>
-
-<style>
-/* ===== GENERAL PAGE STYLE ===== */
-body {
-    margin: 0;
-    padding: 0;
-    background: url('wall.png') center/cover no-repeat;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    position: relative;
-    animation: flicker 8s infinite;
-}
-
-/* ===== FLICKERING BUNKER LIGHT ===== */
-@keyframes flicker {
-    0%, 100% { filter: brightness(0.95); }
-    10%     { filter: brightness(1.05); }
-    14%     { filter: brightness(0.90); }
-    18%     { filter: brightness(1.08); }
-    22%     { filter: brightness(0.85); }
-    26%     { filter: brightness(1.03); }
-    30%     { filter: brightness(0.92); }
-    70%     { filter: brightness(1.00); }
-}
-
-/* ===== POSTER CONTAINER ===== */
-#center-poster {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 430px;
-}
-
-#center-poster img {
-    width: 100%;
-    display: block;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8);
-}
-
-/* ===== DAMAGED POSTERS AROUND ===== */
-.damaged {
-    position: absolute;
-    width: 220px;
-    opacity: 0.55;
-    filter: sepia(40%) brightness(0.7);
-    transform: rotate(-8deg);
-}
-
-/* Placeholders, you can replace with real images later */
-#d1 { top: 6%; left: 4%; transform: rotate(-5deg); }
-#d2 { bottom: 8%; right: 5%; transform: rotate(7deg); }
-#d3 { top: 12%; right: 12%; transform: rotate(-12deg); }
-
-/* These generate the “fake damaged posters” */
-.damaged::before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: rgba(60,45,20,0.45);
-    border: 3px solid rgba(0,0,0,0.6);
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
-}
-
-/* ===== JOIN BUTTON ===== */
-#join-btn {
-    margin-top: 20px;
-    display: block;
-    width: fit-content;
-    padding: 12px 28px;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #e8d7a8;
-    border: 3px solid #c1a15e;
-    background: rgba(20, 10, 0, 0.6);
-    margin-left: auto;
-    margin-right: auto;
-    transition: 0.25s;
-}
-
-#join-btn:hover {
-    background: rgba(40, 20, 0, 0.8);
-    transform: scale(1.06);
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1st Velian Raiders</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- ===== CENTER POSTER ===== -->
-<div id="center-poster">
-    <img src="Poster.png" alt="Main Poster" />
+    <div class="wall flicker">
 
-    <!-- DISCORD BUTTON DIRECTLY BELOW POSTER -->
-    <a id="join-btn" href="https://discord.gg/yourlink" target="_blank">
-        JOIN THE FIGHT
-    </a>
-</div>
+        <img src="/mnt/data/224fee0f-b73d-4019-a9e2-dc833d3fcb0c.png" 
+             alt="Velian Raiders Poster"
+             class="poster">
 
-<!-- ===== DAMAGED POSTERS (FAKE PLACEHOLDERS) ===== -->
-<div class="damaged" id="d1"></div>
-<div class="damaged" id="d2"></div>
-<div class="damaged" id="d3"></div>
+        <a class="cta-button" href="https://discord.gg/yourlink" target="_blank">
+            JOIN THE FIGHT
+        </a>
+
+    </div>
 
 </body>
 </html>
+/* FULLSCREEN WALL BACKGROUND */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* WALL */
+.wall {
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle at top, #3a2d18, #1a150c, #0a0805);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+/* POSTER */
+.poster {
+    width: 420px;
+    max-width: 90%;
+    box-shadow: 0px 20px 60px rgba(0,0,0,0.7);
+    border-radius: 4px;
+}
+
+/* BUTTON */
+.cta-button {
+    margin-top: 30px;
+    padding: 12px 40px;
+    background: #8a6a32;
+    border: 3px solid #e2c37d;
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.4);
+    transition: 0.2s;
+}
+
+.cta-button:hover {
+    background: #b48a46;
+    transform: scale(1.05);
+}
+
+/* FLICKERING BUNKER LIGHT */
+.flicker {
+    animation: flickerAnimation 8s infinite;
+    animation-timing-function: steps(2, end);
+}
+
+@keyframes flickerAnimation {
+    0%, 5%   { filter: brightness(0.9); }
+    6%, 7%   { filter: brightness(0.4); }
+    8%, 12%  { filter: brightness(1); }
+    13%, 15% { filter: brightness(0.7); }
+    16%, 100% { filter: brightness(1); }
+}
