@@ -1,49 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1st Velian Raiders</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>1st Velian Raiders</title>
+
+<style>
     body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background: url('/mnt/data/11391a26-6b85-4041-94a2-632892d0465c.png') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        font-family: "Bebas Neue", Impact, sans-serif;
+
+        /* Background poster */
+        background-image: url("/mnt/data/1b3a4977-611c-4e6c-aaba-e82070c3193d.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        /* Flicker effect */
+        animation: bunkerFlicker 6s infinite ease-in-out;
     }
 
-    .cta {
-      margin-bottom: 80px;
-      text-align: center;
+    /* --- BUNKER FLICKER --- */
+    @keyframes bunkerFlicker {
+        0%   { filter: brightness(0.95); }
+        10%  { filter: brightness(1.03); }
+        22%  { filter: brightness(0.92); }
+        35%  { filter: brightness(1.06); }
+        50%  { filter: brightness(0.90); }
+        62%  { filter: brightness(1.04); }
+        75%  { filter: brightness(0.94); }
+        90%  { filter: brightness(1.02); }
+        100% { filter: brightness(0.95); }
     }
 
-    .cta a {
-      display: inline-block;
-      padding: 12px 24px;
-      background: rgba(0, 0, 0, 0.7);
-      color: #f0e2b0;
-      text-decoration: none;
-      font-size: 1.5rem;
-      border: 2px solid #f0e2b0;
-      border-radius: 8px;
-      transition: 0.3s ease;
+    /* --- FLOATING DUST PARTICLES --- */
+    .dust {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 2;
     }
 
-    .cta a:hover {
-      background: rgba(0, 0, 0, 0.9);
-      transform: scale(1.05);
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 230, 180, 0.18);
+        border-radius: 50%;
+        animation: dustFloat linear infinite;
+        filter: blur(2px);
     }
-  </style>
+
+    @keyframes dustFloat {
+        from { transform: translateY(110vh) translateX(0px); opacity: 0; }
+        10%  { opacity: .3; }
+        50%  { opacity: .15; }
+        to   { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+    }
+
+    /* --- BUTTON --- */
+    .button-container {
+        position: absolute;
+        bottom: 8%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 5;
+    }
+
+    .join-btn {
+        padding: 14px 32px;
+        font-size: 22px;
+        letter-spacing: 2px;
+
+        background-color: rgba(40, 40, 40, 0.85);
+        color: #f2e2b3;
+        border: 2px solid #c2a974;
+        border-radius: 8px;
+
+        text-decoration: none;
+        transition: 0.2s ease-in-out;
+    }
+
+    .join-btn:hover {
+        background-color: rgba(60, 60, 60, 0.9);
+        transform: scale(1.05);
+    }
+</style>
 </head>
+
 <body>
-  <div class="cta">
-    <a href="https://discord.gg/CT22psfhqU" target="_blank">JOIN THE FIGHT</a>
-  </div>
+
+    <!-- DUST PARTICLE LAYER -->
+    <div class="dust">
+        <!-- Generate 30 dust particles -->
+        <script>
+            const dustContainer = document.currentScript.parentElement;
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement("div");
+                p.classList.add("particle");
+                p.style.left = Math.random() * 100 + "vw";
+                p.style.animationDuration = 10 + Math.random() * 10 + "s";
+                p.style.animationDelay = Math.random() * -20 + "s";
+                dustContainer.appendChild(p);
+            }
+        </script>
+    </div>
+
+    <!-- DISCORD BUTTON -->
+    <div class="button-container">
+        <a class="join-btn" href="https://discord.gg/CT22psfhqU" target="_blank">
+            JOIN THE FIGHT
+        </a>
+    </div>
+
 </body>
 </html>
+
 
