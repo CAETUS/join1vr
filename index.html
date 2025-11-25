@@ -1,90 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join the Fight</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>1VR</title>
 
 <style>
-    body {
+    /* Remove all margins */
+    body, html {
         margin: 0;
         padding: 0;
+        height: 100%;
         overflow: hidden;
-        height: 100vh;
-        width: 100vw;
-
-        /* REAL BACKGROUND */
-        background-image: url('Poster.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        /* DARK FILTER */
-        position: relative;
-        background-color: #0f0f0c;
+        background: #000;
     }
 
-    /* BUNKER LIGHT FLICKER */
-    body::before {
-        content: "";
-        position: absolute;
+    /* The background poster */
+    .bg {
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 244, 200, 0.05);
-        pointer-events: none;
-        animation: flicker 7s infinite;
+        background-image: url("Poster.png"); /* GitHub Pages loads local files automatically */
+        background-size: contain;   /* THIS makes the whole poster visible */
+        background-repeat: no-repeat;
+        background-position: center center;
+        filter: brightness(0.72);
+        animation: flicker 6s infinite;
     }
 
+    /* Flickering bunker-light effect */
     @keyframes flicker {
-        0%, 100% { opacity: 0.03; }
-        10% { opacity: 0.15; }
-        13% { opacity: 0.02; }
-        30% { opacity: 0.12; }
-        45% { opacity: 0.04; }
-        60% { opacity: 0.14; }
-        70% { opacity: 0.03; }
-        85% { opacity: 0.1; }
+        0%, 100% { filter: brightness(0.72); }
+        40% { filter: brightness(0.68); }
+        47% { filter: brightness(0.75); }
+        55% { filter: brightness(0.70); }
+        62% { filter: brightness(0.73); }
     }
 
-    /* DUST PARTICLES */
+    /* Dust particles */
     .dust {
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        background: rgba(255,255,255,0.25);
-        border-radius: 50%;
-        animation: drift 12s linear infinite;
-        opacity: 0.4;
-        filter: blur(1px);
+        pointer-events: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://i.imgur.com/o7nQpQm.png"); /* tiny transparent dust pattern */
+        opacity: 0.25;
+        animation: drift 60s linear infinite;
     }
 
     @keyframes drift {
-        from { transform: translateY(100vh) translateX(0); }
-        to { transform: translateY(-10vh) translateX(20vw); }
+        from { transform: translateY(0px); }
+        to { transform: translateY(-600px); }
     }
 
-    /* BUTTON */
+    /* Join button */
     .join-btn {
         position: absolute;
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(30, 30, 30, 0.85);
-        border: 2px solid #c7a86d;
-        padding: 16px 40px;
-        font-size: 18px;
+        padding: 14px 38px;
+        font-size: 20px;
         font-family: Impact, sans-serif;
-        color: #f8e7c0;
+        color: #f3e6c0;
+        background: rgba(40, 38, 32, 0.85);
+        border: 3px solid #b79b5c;
         cursor: pointer;
-        letter-spacing: 2px;
-        transition: 0.2s;
+        letter-spacing: 1px;
+        transition: 0.3s;
         text-decoration: none;
     }
 
     .join-btn:hover {
-        background: rgba(50, 50, 50, 0.9);
+        background: rgba(80, 72, 55, 0.9);
         transform: translateX(-50%) scale(1.05);
     }
 </style>
@@ -92,12 +84,10 @@
 
 <body>
 
-<!-- DUST PARTICLES -->
-<script>
-    for (let i = 0; i < 80; i++) {
-        let d = document.createElement("div");
-        d.className = "dust";
-        d.style.left = Math.random() * 100 + "vw";
-        d.style.animationDelay = (Math.random() * 12) + "s";
-        d.style.opacity = 0.1 + Math.random() * 0.4;
-        document.body.append
+<div class="bg"></div>
+<div class="dust"></div>
+
+<a class="join-btn" href="https://discord.gg/CT22psfhqU">JOIN THE FIGHT</a>
+
+</body>
+</html>
