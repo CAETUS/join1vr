@@ -1,94 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>1st Velian Raiders</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1st Velian Raiders</title>
+  <style>
     body {
-        margin: 0;
-        background: #111;
-        font-family: "Courier New", monospace;
-        color: #e7e1c6;
-        text-align: center;
-        background-image: url('https://i.imgur.com/ud5Tq9C.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        filter: sepia(35%) contrast(85%);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('/mnt/data/11391a26-6b85-4041-94a2-632892d0465c.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      font-family: Arial, sans-serif;
     }
 
-    .poster-container {
-        margin-top: 40px;
-        display: flex;
-        justify-content: center;
-        animation: flicker 6s infinite;
+    .cta {
+      margin-bottom: 80px;
+      text-align: center;
     }
 
-    .poster {
-        width: 55%;
-        max-width: 700px;
-        border: 6px solid #3a2f1f;
-        box-shadow: 0 0 35px rgba(0,0,0,0.6);
-        filter: sepia(30%) contrast(90%);
+    .cta a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #f0e2b0;
+      text-decoration: none;
+      font-size: 1.5rem;
+      border: 2px solid #f0e2b0;
+      border-radius: 8px;
+      transition: 0.3s ease;
     }
 
-    h1 {
-        margin-top: 25px;
-        font-size: 42px;
-        letter-spacing: 3px;
-        text-shadow: 0 0 12px #000;
+    .cta a:hover {
+      background: rgba(0, 0, 0, 0.9);
+      transform: scale(1.05);
     }
-
-    p {
-        font-size: 22px;
-        margin-top: -10px;
-        text-shadow: 0 0 10px #000;
-    }
-
-    a.discord {
-        display: inline-block;
-        margin-top: 30px;
-        padding: 12px 28px;
-        background: rgba(50,50,50,0.7);
-        border: 2px solid #aaa;
-        color: #e7e7e7;
-        text-decoration: none;
-        font-size: 20px;
-        letter-spacing: 2px;
-        transition: 0.2s;
-    }
-
-    a.discord:hover {
-        background: rgba(120,120,120,0.8);
-        color: #fff;
-    }
-
-    @keyframes flicker {
-        0% { opacity: 1; }
-        5% { opacity: 0.92; }
-        8% { opacity: 1; }
-        12% { opacity: 0.95; }
-        15% { opacity: 1; }
-        18% { opacity: 0.9; }
-        22% { opacity: 1; }
-        60% { opacity: 1; }
-        62% { opacity: 0.94; }
-        65% { opacity: 1; }
-        100% { opacity: 1; }
-    }
-</style>
+  </style>
 </head>
-
 <body>
-    <div class="poster-container">
-        <img class="poster" src="poster.png" alt="1st Velian Raiders Propaganda Poster">
-    </div>
-
-    <h1>1st Velian Raiders</h1>
-    <p><i>“By Steel and Thunder — The Sky Is Ours”</i></p>
-    <p><i>For the End is Our Glory</i></p>
-
-    <a class="discord" href="https://discord.gg/CT22psfhqU" target="_blank">Join the Regiment</a>
+  <div class="cta">
+    <a href="https://discord.gg/CT22psfhqU" target="_blank">JOIN THE FIGHT</a>
+  </div>
 </body>
 </html>
 
