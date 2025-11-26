@@ -4,44 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1st Velian Raiders</title>
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: url('velian_poster.png') no-repeat center center fixed;
+      background: url('landing_poster.png') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Courier New', monospace;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
     }
 
-    .link-container {
-      position: absolute;
-      top: 70%;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-    }
-
+    /* Button overlay on "JOIN THE FIGHT" */
     .join-button {
-      display: inline-block;
-      padding: 12px 28px;
-      font-size: 20px;
-      text-decoration: none;
-      color: #f3f1e7;
-      border: 2px solid #c7b27a;
-      background: rgba(40, 35, 20, 0.55);
-      letter-spacing: 2px;
-      transition: 0.2s;
+      position: absolute;
+
+      /* Position tuned to match the exact spot on your poster */
+      left: 50%;
+      top: 83%;
+
+      transform: translate(-50%, -50%);
+      width: 260px;
+      height: 55px;
+
+      /* Invisible but clickable */
+      background: rgba(255, 255, 255, 0);
+      border: none;
+      cursor: pointer;
     }
 
     .join-button:hover {
-      background: rgba(40, 35, 20, 0.85);
-      transform: scale(1.05);
+      outline: 2px solid rgba(255, 255, 255, 0.25);
     }
   </style>
 </head>
+
 <body>
-  <div class="link-container">
-    <a class="join-button" href="https://discord.gg/mexb69JMWa">JOIN THE FIGHT</a>
-  </div>
+  <a class="join-button" href="https://discord.gg/akeJjthEGJ"></a>
 </body>
 </html>
