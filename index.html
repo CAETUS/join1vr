@@ -14,7 +14,7 @@
             background: black;
         }
 
-        /* Background layer (blurred edge fill) */
+        /* Background layer (blurred to fill sides) */
         .bg {
             position: fixed;
             inset: 0;
@@ -22,11 +22,11 @@
             background-size: cover;
             background-position: center;
             filter: blur(40px) brightness(0.4);
-            transform: scale(1.1);  /* prevents edges from showing after blur */
+            transform: scale(1.1);
             z-index: 1;
         }
 
-        /* Foreground poster */
+        /* Foreground poster centered */
         .poster {
             position: fixed;
             inset: 0;
@@ -42,41 +42,53 @@
             display: block;
         }
 
-        /* Join button */
+        /* Button placed over the poster text */
         .join-button {
             position: fixed;
-            bottom: 40px;
+            z-index: 3;
+
+            /* This is the proportional placement that aligns with the bottom-center text */
+            bottom: 11vh;          /* tweak if needed */
             left: 50%;
             transform: translateX(-50%);
-            padding: 12px 30px;
+
+            /* Poster color-match */
+            background: rgba(40, 30, 15, 0.85);   /* dark gritty brown */
+            color: #D2B276;                       /* worn gold like poster text */
+            border: 2px solid #A58A52;            /* deeper gold border */
+            border-radius: 3px;
+
+            padding: 10px 32px;
             font-size: 18px;
-            font-family: Arial, sans-serif;
-            color: #ddd;
-            background: rgba(0, 0, 0, 0.6);
-            border: 2px solid #777;
-            border-radius: 4px;
+            font-family: "Arial", sans-serif;
+            letter-spacing: 2px;
             text-decoration: none;
-            letter-spacing: 1px;
-            z-index: 3;
+            text-transform: uppercase;
+
+            /* extra style to blend with poster */
+            box-shadow: 0 0 12px rgba(0,0,0,0.6);
+            backdrop-filter: blur(2px);
         }
 
         .join-button:hover {
-            background: rgba(0, 0, 0, 0.8);
-            border-color: #bbb;
+            background: rgba(60, 45, 25, 0.9);
+            border-color: #D8C08A;
+            color: #E8D6A4;
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Blurred side fill -->
     <div class="bg"></div>
 
-    <!-- Actual centered poster -->
     <div class="poster">
         <img src="landing_poster.png" alt="1VR Recruitment Poster">
     </div>
 
-    <a href="https://discord.gg/mexb69JMWa" class="join-button">JOIN THE FIGHT</a>
+    <a href="https://discord.gg/mexb69JMWa" class="join-button">
+        JOIN THE FIGHT
+    </a>
 
 </body>
 </html>
