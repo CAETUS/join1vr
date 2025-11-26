@@ -6,36 +6,45 @@
     <title>1VR — 1st Velian Raiders</title>
 
     <style>
-        /* Reset + fullscreen layout */
         html, body {
             margin: 0;
             padding: 0;
-            width: 100%;
             height: 100%;
-            overflow: hidden;   /* Prevent scrollbars */
-            background: black;  /* Avoid flash of white borders */
+            overflow: hidden;
+            background: black;
         }
 
-        /* Container that fills the viewport */
-        .hero {
-            width: 100vw;
+        /* Background layer (blurred edge fill) */
+        .bg {
+            position: fixed;
+            inset: 0;
+            background-image: url("landing_poster.png");
+            background-size: cover;
+            background-position: center;
+            filter: blur(40px) brightness(0.4);
+            transform: scale(1.1);  /* prevents edges from showing after blur */
+            z-index: 1;
+        }
+
+        /* Foreground poster */
+        .poster {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .poster img {
             height: 100vh;
-        }
-
-        /* AUTO-SCALING IMAGE (important part) */
-        .hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;        /* Fill the entire screen */
-            object-position: center;  /* Center the poster */
+            width: auto;
             display: block;
-            user-select: none;
-            -webkit-user-drag: none;
         }
 
-        /* Optional: overlay button centered at bottom */
+        /* Join button */
         .join-button {
-            position: absolute;
+            position: fixed;
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
@@ -43,28 +52,31 @@
             font-size: 18px;
             font-family: Arial, sans-serif;
             color: #ddd;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             border: 2px solid #777;
             border-radius: 4px;
             text-decoration: none;
             letter-spacing: 1px;
+            z-index: 3;
         }
 
         .join-button:hover {
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
             border-color: #bbb;
         }
     </style>
 </head>
-
 <body>
 
-    <div class="hero">
+    <!-- Blurred side fill -->
+    <div class="bg"></div>
+
+    <!-- Actual centered poster -->
+    <div class="poster">
         <img src="landing_poster.png" alt="1VR Recruitment Poster">
     </div>
 
-    <!-- Optional button (“Join the Fight”) -->
-    <a href="#join" class="join-button">JOIN THE FIGHT</a>
+    <a href="https://discord.gg/mexb69JMWa" class="join-button">JOIN THE FIGHT</a>
 
 </body>
 </html>
