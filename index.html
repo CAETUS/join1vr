@@ -10,25 +10,23 @@
       margin: 0;
       padding: 0;
       background: url('landing_poster.png') no-repeat center center fixed;
-      background-size: cover;
+
+      /* Hybrid perfect-fit */
+      background-size: calc(100% * 0.92) auto;
+
+      background-color: #1b1a16;
       height: 100vh;
       width: 100vw;
       overflow: hidden;
     }
 
-    /* Button overlay on "JOIN THE FIGHT" */
     .join-button {
       position: absolute;
-
-      /* Position tuned to match the exact spot on your poster */
       left: 50%;
-      top: 83%;
-
+      top: 86%;
       transform: translate(-50%, -50%);
       width: 260px;
       height: 55px;
-
-      /* Invisible but clickable */
       background: rgba(255, 255, 255, 0);
       border: none;
       cursor: pointer;
@@ -38,9 +36,11 @@
       outline: 2px solid rgba(255, 255, 255, 0.25);
     }
   </style>
-</head>
 
+</head>
 <body>
+
   <a class="join-button" href="https://discord.gg/akeJjthEGJ"></a>
+
 </body>
 </html>
