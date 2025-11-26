@@ -1,46 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1st Velian Raiders</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>1st Velian Raiders</title>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('landing_poster.png') no-repeat center center fixed;
-
-      /* Hybrid perfect-fit */
-      background-size: calc(100% * 0.92) auto;
-
-      background-color: #1b1a16;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
+<style>
+    /* Full page reset */
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #1a1a1a; /* fallback color matching bunker wall tone */
     }
 
-    .join-button {
-      position: absolute;
-      left: 50%;
-      top: 86%;
-      transform: translate(-50%, -50%);
-      width: 260px;
-      height: 55px;
-      background: rgba(255, 255, 255, 0);
-      border: none;
-      cursor: pointer;
+    /* Background container */
+    .bg-container {
+        height: 100vh;
+        width: 100vw;
+
+        /* Fit entire poster WITHOUT cutting it */
+        background-image: url("landing_poster.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        /* Key: contain + fill background color */
+        background-size: contain; 
+        background-color: #1a1a1a; /* blends with bunker wall */
+        
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 40px;
     }
 
-    .join-button:hover {
-      outline: 2px solid rgba(255, 255, 255, 0.25);
+    /* Button styling */
+    .join-btn {
+        display: inline-block;
+        padding: 12px 28px;
+        border: 2px solid #c6a673;
+        background-color: rgba(0, 0, 0, 0.55);
+        color: #c6a673;
+        font-family: "Courier New", monospace;
+        font-size: 18px;
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: 0.25s;
     }
-  </style>
+
+    .join-btn:hover {
+        background-color: #c6a673;
+        color: #000;
+    }
+</style>
 
 </head>
 <body>
 
-  <a class="join-button" href="https://discord.gg/akeJjthEGJ"></a>
+<div class="bg-container">
+    <a class="join-btn" href="https://discord.gg/akeJjthEGJ" target="_blank">
+        JOIN THE FIGHT
+    </a>
+</div>
 
 </body>
 </html>
