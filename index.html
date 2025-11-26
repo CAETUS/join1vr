@@ -39,7 +39,7 @@
             width: auto;
         }
 
-        /* WIDER BUTTON VERSION */
+        /* WIDER + LESS TRANSPARENT BUTTON */
         .join-button {
             position: fixed;
             z-index: 3;
@@ -47,24 +47,24 @@
             left: 50%;
             transform: translateX(-50%);
 
-            padding: 12px 48px; /* <-- wider */
+            padding: 14px 62px; /* wider */
             font-size: 18px;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-family: Arial, sans-serif;
 
-            background: rgba(40, 30, 15, 0.85);
+            background: rgba(40, 30, 15, 0.92); /* less transparent */
             color: #D2B276;
             border: 2px solid #A58A52;
-            border-radius: 3px;
+            border-radius: 4px;
             text-decoration: none;
 
-            box-shadow: 0 0 12px rgba(0,0,0,0.6);
+            box-shadow: 0 0 14px rgba(0,0,0,0.7);
             backdrop-filter: blur(2px);
         }
 
         .join-button:hover {
-            background: rgba(60, 45, 25, 0.9);
+            background: rgba(60, 45, 25, 0.95); /* slightly firmer on hover */
             border-color: #D8C08A;
             color: #E8D6A4;
         }
